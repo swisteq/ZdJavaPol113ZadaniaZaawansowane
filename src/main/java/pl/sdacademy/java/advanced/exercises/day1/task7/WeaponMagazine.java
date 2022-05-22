@@ -2,9 +2,10 @@ package pl.sdacademy.java.advanced.exercises.day1.task7;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.concurrent.ArrayBlockingQueue;
 
 public class WeaponMagazine {
-    private Deque<String> weaponMagazine;
+    private Deque<String> weaponMagazine; //ArrayBlockingQueue
     private final int maxNumberOfBulletInMagazine;
 
     public WeaponMagazine(int capacity) {
