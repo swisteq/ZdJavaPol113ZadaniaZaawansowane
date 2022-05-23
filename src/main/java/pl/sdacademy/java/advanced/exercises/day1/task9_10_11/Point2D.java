@@ -1,4 +1,4 @@
-package pl.sdacademy.java.advanced.exercises.day1.task9;
+package pl.sdacademy.java.advanced.exercises.day1.task9_10_11;
 
 import java.util.Objects;
 
@@ -19,6 +19,14 @@ public class Point2D implements Movable{
         return y;
     }
 
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
     @Override
     public boolean equals(Object o) {
         if(this == o) return true;
@@ -36,5 +44,10 @@ public class Point2D implements Movable{
     public void move(MoveDirection moveDirection) {
         x += moveDirection.getX();
         y += moveDirection.getY();
+    }
+
+    public void changePosition(double newX, double newY) {
+        x = newX;
+        y = newY;
     }
 }

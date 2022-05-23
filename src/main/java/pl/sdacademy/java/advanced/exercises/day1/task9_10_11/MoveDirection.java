@@ -1,4 +1,4 @@
-package pl.sdacademy.java.advanced.exercises.day1.task9;
+package pl.sdacademy.java.advanced.exercises.day1.task9_10_11;
 
 import java.util.Objects;
 

@@ -1,11 +1,10 @@
-package pl.sdacademy.java.advanced.exercises.day1.task9;
+package pl.sdacademy.java.advanced.exercises.day1.task9_10_11;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.within;
-import static org.junit.jupiter.api.Assertions.*;
 
 class CircleTest {
     private Circle circle;
