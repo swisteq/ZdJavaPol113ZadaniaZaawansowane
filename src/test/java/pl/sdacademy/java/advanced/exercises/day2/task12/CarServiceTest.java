@@ -44,6 +44,15 @@ class CarServiceTest {
         carService.add(xc90_1);
         carService.add(xc90_2);
         carService.add(xc60);
+
+//        Optional<Car> mostExpensiveCar = carService.getMostExpensiveCar();
+//
+//        if(mostExpensiveCar.isPresent()) {
+//            //logika1 -> rozpakuj car
+//        } else {
+//            //logika2 -> rzuć wyjątek
+//        }
+//        Car car = mostExpensiveCar.orElseThrow();
     }
 
     @Test
@@ -114,5 +123,7 @@ class CarServiceTest {
         //then
         assertThat(result).containsExactlyInAnyOrder(x500, gls_1, gls_2);
     }
+
+
 
 }
