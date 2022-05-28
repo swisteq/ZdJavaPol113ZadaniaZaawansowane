@@ -1,13 +1,11 @@
-package pl.sdacademy.java.advanced.exercises.day2.task12;
+package pl.sdacademy.java.advanced.exercises.day2.task12_13;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class CarServiceTest {
     private CarService carService;
@@ -21,7 +19,8 @@ class CarServiceTest {
     private Car gls_2;
     private Car xc90_1;
     private Car xc90_2;
-    private Car xc60;
+    private Car xc60_1;
+    private Car xc60_2;
 
     @BeforeEach
     void setUp() {
@@ -35,7 +34,8 @@ class CarServiceTest {
         gls_2 = new Car("GLS", "Mercedes", 200_000, 2019, List.of(mercedes, benz), EngineType.V8);
         xc90_1 = new Car("xc90", "Volvo", 300_000, 2022, List.of(volvo), EngineType.V12);
         xc90_2 = new Car("xc90", "Volvo", 150_000, 2018, List.of(volvo), EngineType.V6);
-        xc60 = new Car("xc60", "Volvo", 200_000, 2020, List.of(volvo), EngineType.S6);
+        xc60_1 = new Car("xc60", "Volvo", 200_000, 2020, List.of(volvo), EngineType.S6);
+        xc60_2 = new Car("xc60", "Volvo", 20_00, 1998, List.of(volvo), EngineType.S3);
 
         carService = new CarService();
         carService.add(x500);
@@ -43,7 +43,8 @@ class CarServiceTest {
         carService.add(gls_2);
         carService.add(xc90_1);
         carService.add(xc90_2);
-        carService.add(xc60);
+        carService.add(xc60_1);
+        carService.add(xc60_2);
 
 //        Optional<Car> mostExpensiveCar = carService.getMostExpensiveCar();
 //
@@ -60,8 +61,8 @@ class CarServiceTest {
         //when
         List<Car> result = carService.getAll();
         //then
-        assertThat(result.size()).isEqualTo(6);
-        assertThat(result).containsExactlyInAnyOrder(x500, gls_1, gls_2, xc90_1, xc90_2, xc60);
+        assertThat(result.size()).isEqualTo(7);
+        assertThat(result).containsExactlyInAnyOrder(x500, gls_1, gls_2, xc90_1, xc90_2, xc60_1, xc60_2);
     }
 
     @Test
@@ -70,8 +71,8 @@ class CarServiceTest {
         carService.remove(xc90_1);
         //then
         List<Car> result = carService.getAll();
-        assertThat(result.size()).isEqualTo(5);
-        assertThat(result).containsExactlyInAnyOrder(x500, gls_1, gls_2, xc90_2, xc60);
+        assertThat(result.size()).isEqualTo(6);
+        assertThat(result).containsExactlyInAnyOrder(x500, gls_1, gls_2, xc90_2, xc60_1, xc60_2);
     }
 
     @Test
@@ -105,7 +106,7 @@ class CarServiceTest {
         //when
         List<Car> result = carService.getSortedCarByName(true);
         //then
-        assertThat(result).containsExactly(gls_1, gls_2, x500, xc60, xc90_1, xc90_2);
+        assertThat(result).containsExactly(gls_1, gls_2, x500, xc60_1, xc60_2, xc90_1, xc90_2);
     }
 
     @Test
@@ -113,7 +114,7 @@ class CarServiceTest {
         //when
         List<Car> result = carService.getSortedCarByName(false);
         //then
-        assertThat(result).containsExactly(xc90_1, xc90_2, xc60, x500, gls_1, gls_2);
+        assertThat(result).containsExactly(xc90_1, xc90_2, xc60_1, xc60_2, x500, gls_1, gls_2);
     }
 
     @Test
@@ -124,6 +125,36 @@ class CarServiceTest {
         assertThat(result).containsExactlyInAnyOrder(x500, gls_1, gls_2);
     }
 
+    @Test
+    void shouldReturnCarsProducedBefore1999() {
+        //when
+        List<Car> result = carService.getCarsProducedBefore1999();
+        //then
+        assertThat(result).containsExactlyInAnyOrder(xc60_2);
+    }
 
+    @Test
+    void shouldReturnCheapestCar() {
+        //when
+        Car result = carService.getCheapestCar().get();
+        //then
+        assertThat(result).isEqualTo(xc60_2);
+    }
+
+    @Test
+    void shouldReturnCarsHavingAtLeast2Manufacturers() {
+        //when
+        List<Car> result = carService.getCarsHavingAtLeast2Manufacturers();
+        //then
+        assertThat(result).containsExactlyInAnyOrder(gls_1, gls_2);
+    }
+
+    @Test
+    void shouldReturnCarsProducedBy() {
+        //when
+        List<Car> result = carService.getCarsProducedBy(volvo);
+        //then
+        assertThat(result).containsExactlyInAnyOrder(xc90_1, xc90_2, xc60_1, xc60_2);
+    }
 
 }

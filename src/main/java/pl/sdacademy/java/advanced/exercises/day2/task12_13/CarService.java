@@ -1,4 +1,4 @@
-package pl.sdacademy.java.advanced.exercises.day2.task12;
+package pl.sdacademy.java.advanced.exercises.day2.task12_13;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -30,6 +30,12 @@ public class CarService {
                 .collect(Collectors.toList());
     }
 
+    public List<Car> getCarsProducedBefore1999() {
+        return cars.stream()
+                .filter(car -> car.getProductionYear() < 1999)
+                .collect(Collectors.toList());
+    }
+
     public List<Car> getAllWithSpecificEngine(EngineType engineType) {
         return cars.stream()
                 .filter(car -> car.getEngineType().equals(engineType))
@@ -42,6 +48,21 @@ public class CarService {
                 //.max(Comparator.comparingDouble(car -> car.getPrice()));
     }
 
+    public Optional<Car> getCheapestCar() {
+        return cars.stream()
+                .min(Comparator.comparingDouble(Car::getPrice));
+    }
+
+    public List<Car> getCarsHavingAtLeast2Manufacturers() {
+        return cars.stream()
+                .filter(car -> car.getManufacturers().size() >= 2)
+                .collect(Collectors.toList());
+    }
+
+    public boolean contains(Car car) {
+        return cars.contains(car);
+    }
+
     public List<Car> getSortedCarByName(boolean ascending) {
         if(ascending) {
             return cars.stream()
@@ -50,6 +71,12 @@ public class CarService {
         }
         return cars.stream()
                 .sorted(Comparator.comparing(Car::getName).reversed())
+                .collect(Collectors.toList());
+    }
+
+    public List<Car> getCarsProducedBy(Manufacturer manufacturer) {
+        return cars.stream()
+                .filter(car -> car.getManufacturers().contains(manufacturer))
                 .collect(Collectors.toList());
     }
 

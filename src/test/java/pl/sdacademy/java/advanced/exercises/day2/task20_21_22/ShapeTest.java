@@ -1,9 +1,8 @@
-package pl.sdacademy.java.advanced.exercises.day2.task20;
+package pl.sdacademy.java.advanced.exercises.day2.task20_21_22;
 
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ShapeTest {
 
