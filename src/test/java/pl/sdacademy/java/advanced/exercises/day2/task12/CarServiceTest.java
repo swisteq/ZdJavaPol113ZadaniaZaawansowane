@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -62,6 +63,56 @@ class CarServiceTest {
         List<Car> result = carService.getAll();
         assertThat(result.size()).isEqualTo(5);
         assertThat(result).containsExactlyInAnyOrder(x500, gls_1, gls_2, xc90_2, xc60);
+    }
+
+    @Test
+    void shouldReturnCarsWithEngineTypeEqualToV12() {
+        //when
+        List<Car> result = carService.getAllWithEngineV12();
+        //then
+        assertThat(result.size()).isEqualTo(2);
+        assertThat(result).containsExactlyInAnyOrder(gls_1, xc90_1);
+    }
+
+    @Test
+    void shouldReturnCarsWithEngineTypeEqualToV8() {
+        //when
+        List<Car> result = carService.getAllWithSpecificEngine(EngineType.V8);
+        //then
+        assertThat(result.size()).isEqualTo(1);
+        assertThat(result).containsExactlyInAnyOrder(gls_2);
+    }
+
+    @Test
+    void shouldReturnTheMostExpensiveCar() {
+        //when
+        Car result = carService.getMostExpensiveCar().get();
+        //then
+        assertThat(result).isEqualTo(gls_1);
+    }
+
+    @Test
+    void shouldReturnSortedListAscending() {
+        //when
+        List<Car> result = carService.getSortedCarByName(true);
+        //then
+        assertThat(result).containsExactly(gls_1, gls_2, x500, xc60, xc90_1, xc90_2);
+    }
+
+    @Test
+    void shouldReturnSortedListDescending() {
+        //when
+        List<Car> result = carService.getSortedCarByName(false);
+        //then
+        assertThat(result).containsExactly(xc90_1, xc90_2, xc60, x500, gls_1, gls_2);
+    }
+
+    @Test
+    void shouldReturnListOfCarsWhichManufacturersFounded_LessThan() {
+        //when
+        List<Car> result = carService.getCarsFoundedIn(1900, Operation.LESS_THAN);
+        //then
+        assertThat(result).containsExactlyInAnyOrder(x500, gls_1, gls_2);
     }
 
 }
