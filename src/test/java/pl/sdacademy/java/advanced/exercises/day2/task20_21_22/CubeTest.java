@@ -26,4 +26,34 @@ class CubeTest {
         assertThat(result).isEqualTo(24);
     }
 
+    @Test
+    void shouldVerifyFillMethod_LessThatMaxVolume() {
+        //given
+        Shape cube = new Cube(2);
+        //when
+        double result = ((Cube) cube).fill(5);
+        //then
+        assertThat(result).isEqualTo(-1);
+    }
+
+    @Test
+    void shouldVerifyFillMethod_EqualMaxVolume() {
+        //given
+        Shape cube = new Cube(2);
+        //when
+        double result = ((Cube) cube).fill(8);
+        //then
+        assertThat(result).isEqualTo(0);
+    }
+
+    @Test
+    void shouldVerifyFillMethod_MoreThatMaxVolume() {
+        //given
+        Shape cube = new Cube(2);
+        //when
+        double result = ((Cube) cube).fill(10);
+        //then
+        assertThat(result).isEqualTo(1);
+    }
+
 }
