@@ -10,7 +10,15 @@ import java.io.InputStreamReader;
 import java.net.URL;
 
 public class App {
-
+    /*
+        https://api.nbp.pl
+        https://freecodegenerators.com/code-converters/json-to-pojo
+        logika dla usera:
+        1. podaj currency
+        2. podaj ilosc na wymianę
+        3. zapis do pliku
+        4. itp
+         */
     public static void main(String[] args) throws IOException {
         // #1 połączenie się do api i pobranie treści wiadomości do zmiennej result
         URL nbp = new URL("http://api.nbp.pl/api/exchangerates/tables/a/?format=json");
