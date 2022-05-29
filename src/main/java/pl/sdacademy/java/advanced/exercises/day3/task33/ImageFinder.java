@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 public class ImageFinder {
     public static List<String> findImages(Path directory) {
         //założenie: plik ze zdjęciem to plik z rozszerzeniem *.png lub *.jpeg
+        //Files.walk(path) -> przechodzi po drzewie folderów, zaczynając od directory
         try (Stream<Path> walk = Files.walk(directory)){
             //todo logic
         } catch(IOException e) {
